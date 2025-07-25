@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Classroom Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Classroom Management System</h1>
+        <nav>
+            <a href="{{ url_for('students') }}">Students</a>
+            <a href="{{ url_for('attendance') }}">Attendance</a>
+            <a href="{{ url_for('classes')}}">Class</a>
+            <a href="{{ url_for('participation') }}">Participation</a>
+            <a href="{{ url_for('grades') }}">Grades</a>
+            <a href="{{ url_for('report') }}">Reports</a>
+        </nav>
+    </header>
+
+</body>
+</html>

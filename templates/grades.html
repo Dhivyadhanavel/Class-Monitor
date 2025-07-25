@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grades</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Record Grades</h1>
+<form action="{{ url_for('add_grade') }}" method="POST">
+    <label for="student_id">Student:</label>
+    <select name="student_id" id="student_id" required>
+        {% for student in students %}
+        <!-- Use student_id as the value, and display full name as the option text -->
+        <option value="{{ student['student_id'] }}">{{ student['first_name'] }} {{ student['last_name'] }}</option>
+        {% endfor %}
+    </select>
+    
+    <label for="class_id">Class:</label>
+    <select name="class_id" id="class_id" required>
+        {% for class in classes %}
+        <!-- Use class_id as the value, and display class name as the option text -->
+        <option value="{{ class['class_id'] }}">{{ class['class_name'] }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="assignment_type">Semester:</label>
+    <input type="number" name="assignment_type" id="assignment_type" required>
+
+    <label for="score">Grade:</label>
+    <input type="number" name="score" id="score" required>
+
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

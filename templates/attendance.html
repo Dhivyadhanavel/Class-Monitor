@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Record Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+     <!-- Attendance Records Table -->
+     <h1>Attendance Records</h1>
+     
+    
+
+    <h2>Record Attendance</h2>
+    <form action="{{ url_for('add_attendance') }}" method="POST">
+        <label for="student_id">Student:</label>
+        <select name="student_id" id="student_id" required>
+            {% for student in students %}
+            <option value="{{ student['student_id'] }}">{{ student['first_name'] }} {{ student['last_name'] }}</option>
+            {% endfor %}
+        </select>
+
+    
+        <div class="form-group">
+            <label for="class_id">Select Class</label>
+            <select name="class_id" id="class_id" required>
+                <option value="">Select Class</option>
+                {% for class in classes %}
+                <option value="{{ class.class_id }}">{{ class.class_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <label for="date">Date:</label>
+        <input type="date" name="date" required>
+        
+
+        <label for="is_present">Present:</label>
+        <input type="checkbox" name="is_present" value="1">
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

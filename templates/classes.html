@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Class</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Existing Classes</h2>
+    <table>
+        <tr>
+            <th>Class ID</th>
+            <th>Class Name</th>
+            <th>Teacher Name</th>
+            <th>Subject</th>
+            <th>Action</th>
+        </tr>
+        {% for class in classes %}
+        <tr>
+            <td>{{ class['class_id'] }}</td>
+            <td>{{ class['class_name'] }}</td>
+            <td>{{ class['teacher_name'] }}</td>
+            <td>{{ class['subject'] }}</td>
+            <td>
+                <form action="{{ url_for('delete_class', class_id=class['class_id']) }}" method="POST" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h1>Class</h1>
+    
+    <form action="{{ url_for('add_class') }}" method="POST">
+        <label for="class_name">Class Name:</label>
+        <input type="text" name="class_name" id="class_name" required>
+        
+        <label for="teacher_name">Teacher Name:</label>
+        <input type="text" name="teacher_name" id="teacher_name" required>
+        
+        <label for="subject">Subject:</label>
+        <input type="text" name="subject" id="subject" required>
+        
+        <button type="submit">Add Class</button>
+    </form>
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
